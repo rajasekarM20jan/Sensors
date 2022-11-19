@@ -16,7 +16,7 @@ public class Magnetometer extends AppCompatActivity implements SensorEventListen
     ConstraintLayout magnetometerLayout;
     SensorManager sensorManager;
     Sensor magnetometerSensor;
-    double sensorValues;
+    double x,y,z;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +24,9 @@ public class Magnetometer extends AppCompatActivity implements SensorEventListen
         textView=findViewById(R.id.magnetometerSensorTxt);
         magnetometerLayout=findViewById(R.id.magnetometerView);
 
+        textView.setText("Searching...");
+        textView.setTextColor(getResources().getColor(R.color.white));
+        magnetometerLayout.setBackgroundColor(getResources().getColor(R.color.grey));
 
         sensorManager=(SensorManager) getSystemService(Service.SENSOR_SERVICE);
         magnetometerSensor=sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
@@ -46,7 +49,22 @@ public class Magnetometer extends AppCompatActivity implements SensorEventListen
     public void onSensorChanged(SensorEvent sensorEvent) {
         if(sensorEvent.sensor.getType()==Sensor.TYPE_MAGNETIC_FIELD) {
             if (sensorEvent.values.length > 0) {
-                textView.setText(""+sensorEvent.values[0]+"\n"+sensorEvent.values[1]+"\n"+sensorEvent.values[2]);
+                x=sensorEvent.values[0];
+                y=sensorEvent.values[1];
+                z=sensorEvent.values[2];
+
+                float magnitudeValue= (float) Math.ceil(Math.sqrt((x * x)+(y * y)+(z * z)));
+                if(magnitudeValue>200){
+                    textView.setText("Magnetic Field Detected");
+                    textView.setTextColor(getResources().getColor(R.color.black));
+                    magnetometerLayout.setBackgroundColor(getResources().getColor(R.color.orange));
+                }
+                else{
+                    textView.setText("Searching...");
+                    textView.setTextColor(getResources().getColor(R.color.white));
+                    magnetometerLayout.setBackgroundColor(getResources().getColor(R.color.grey));
+                }
+
             }
         }
     }

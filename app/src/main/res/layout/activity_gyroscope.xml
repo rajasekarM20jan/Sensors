@@ -3,13 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:id="@+id/magnetometerView"
+    android:id="@+id/gyroscopeLayout"
     android:layout_height="match_parent"
-    tools:context=".Magnetometer">
-
+    tools:context=".Gyroscope">
 
     <TextView
-        android:id="@+id/magnetometerSensorTxt"
+        android:id="@+id/gyroscopeSensorTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -20,4 +19,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
