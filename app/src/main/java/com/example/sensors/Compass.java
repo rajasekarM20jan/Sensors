@@ -92,8 +92,6 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
 
             currentDegree=-azimuthInDegrees;
             lastUpdatedTime=System.currentTimeMillis();
-
-
             txt.setText(((int)-azimuthInDegrees)+" °");
         }
     }
